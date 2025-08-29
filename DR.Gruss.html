@@ -1,0 +1,31 @@
+✅ A welcome message ✅ A “Get Health Tip” button ✅ A “Bodybuilding Tip” button
+✅ A basic medication reminder input (time + message) --- 🛠 Step-by-Step: Dr.
+Gruss App (Basic Python GUI) ```python import tkinter as tk from tkinter import
+messagebox import threading import time from datetime import datetime Health and
+bodybuilding tips health_tips = [ "Drink 2 litres of water daily.", "Get at
+least 7 hours of sleep.", "Eat fruits and vegetables every day.", "Wash your
+hands often to avoid infections." ] bodybuilding_tips = [ "Train each muscle
+group at least twice a week.", "Eat enough protein—eggs, chicken, beans.", "Rest
+is just as important as workouts.", "Track your progress with photos or a
+journal." ] Reminder function def set_reminder(): reminder_time =
+reminder_entry.get() reminder_message = reminder_msg.get() def
+wait_and_remind(): while True: now = datetime.now().strftime("%H:%M") if now ==
+reminder_time: messagebox.showinfo("Dr. Gruss Reminder", reminder_message) break
+time.sleep(30)threading.Thread(target=wait_and_remind).start()
+messagebox.showinfo("Dr. Gruss", f"Reminder set for {reminder_time}") GUI setup
+app = tk.Tk() app.title("Dr. Gruss") app.geometry("350x400") tk.Label(app,
+text="Welcome to Dr. Gruss!", font=("Arial", 16)).pack(pady=10) Buttons for
+health and bodybuilding tips def show_health_tip(): tip =
+health_tips[datetime.now().second % len(health_tips)]
+messagebox.showinfo("Health Tip", tip) def show_bodybuilding_tip(): tip =
+bodybuilding_tips[datetime.now().second % len(bodybuilding_tips)]
+messagebox.showinfo("Bodybuilding Tip", tip) tk.Button(app, text="Get Health
+Tip", command=show_health_tip, width=20).pack(pady=10) tk.Button(app,
+text="Bodybuilding Tip", command=show_bodybuilding_tip, width=20).pack(pady=10)
+Reminder section tk.Label(app, text="Set Medication Reminder (HH:MM)").pack()
+reminder_entry = tk.Entry(app) reminder_entry.pack(pady=5) tk.Label(app,
+text="Reminder Message").pack() reminder_msg = tk.Entry(app)
+reminder_msg.pack(pady=5) tk.Button(app, text="Set Reminder",
+command=set_reminder).pack(pady=10) app.mainloop() --- ✅ What You Need to Do:
+1. Copy the code into a file called `dr_gruss.py` 2. Run it with: bash python
+dr_gruss.py ``` ---
